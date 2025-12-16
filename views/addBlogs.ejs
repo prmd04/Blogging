@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <title>Add Blog</title>
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen">
+    <%- include('partials/topbar') %>
+    <%if(message){%>
+    <p
+      id="flash-message"
+      class="text-lg font-semibold text-green-400 bg-green-900/50 p-3 rounded-lg border border-green-600 shadow-md text-center"
+    >
+      <%= message %>
+    </p>
+    <%} %>
+    <div class="max-w-3xl mx-auto mt-12 p-6 bg-gray-800 rounded-xl shadow-lg">
+      <h1 class="text-3xl font-bold mb-6 text-center">Add a New Blog</h1>
+
+      <form action="/createblog" method="POST" class="space-y-6">
+        <div>
+          <label class="block text-gray-300 mb-2 font-semibold">Title</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter Blog Title here"
+            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 transition duration-300"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-gray-300 mb-2 font-semibold">Body</label>
+          <textarea
+            name="body"
+            placeholder="Enter Blog Body here"
+            rows="6"
+            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 transition duration-300 resize-none"
+            required
+          ></textarea>
+        </div>
+        <div class="text-center">
+          <input
+            type="submit"
+            value="Add Blog"
+            class="w-full md:w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-lg shadow-md transition duration-300 cursor-pointer uppercase tracking-wider"
+          />
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    const msg = document.getElementById("flash-message");
+
+    if (msg) {
+      setTimeout(() => {
+        msg.remove();
+      }, 2500);
+    }
+  </script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <title>Home</title>
+  </head>
+
+  <body class="bg-gray-900 text-white">
+    <%- include('partials/topbar') %>
+    <div class="flex justify-start mt-2 mb-3">
+  <form method="GET" action="/home">
+    <input type="hidden" name="page" value="1" />
+
+    <select
+      name="sort"
+      onchange="this.form.submit()"
+      class="bg-gray-800 text-white px-3 py-2 rounded"
+    >
+      <option value="title" <%= sortType === 'title' ? 'selected' : '' %>>
+        Sort by Title
+      </option>
+      <option value="date" <%= sortType === 'date' ? 'selected' : '' %>>
+        Sort by Date
+      </option>
+    </select>
+  </form>
+</div>
+
+
+    <div class="max-w-4xl mx-auto mt-3 space-y-4 px-2">
+      <% if (blogData && blogData.length > 0) { %> <%
+      blogData.forEach(function(blog) { %>
+      <div class="bg-gray-800 p-2 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold text-blue-400 ml-2 mb-2">
+          <%= blog.title %>
+        </h2>
+
+        <p class="text-gray-300 leading-relaxed mb-4 ml-2"><%= blog.body %></p>
+      </div>
+      <% }) %> <% } else { %>
+      <p class="text-center text-gray-400">No blogs found</p>
+      <% } %>
+    </div>
+    <div class="flex justify-center gap-4 mt-8">
+      <% if (currentPage > 1) { %>
+      <a
+        href="/home?page=<%= currentPage - 1 %>"
+        class="px-4 py-2 bg-gray-700 rounded"
+      >
+        Prev
+      </a>
+      <% } %>
+
+      <span class="px-4 py-2 bg-blue-600 rounded">
+        Page <%= currentPage %> of <%= totalPages %>
+      </span>
+
+      <% if (currentPage < totalPages) { %>
+      <a
+        href="/home?page=<%= currentPage + 1 %>"
+        class="px-4 py-2 bg-gray-700 rounded"
+      >
+        Next
+      </a>
+      <% } %>
+    </div>
+  </body>
+</html>

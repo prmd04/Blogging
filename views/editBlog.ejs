@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/output.css" />
+  <title>Edit Blog</title>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+  <%- include('partials/topbar') %>
+
+  <div class="max-w-3xl mx-auto mt-10 bg-gray-800 p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-blue-400 mb-6 text-center">
+      Edit Blog
+    </h1>
+
+    <form action="/editblog/<%= blog._id %>" method="POST" class="space-y-4">
+
+      <input
+        type="text"
+        name="title"
+        value="<%= blog.title %>"
+        required
+        class="w-full p-3 rounded bg-gray-900 border border-gray-700 text-white focus:outline-none"
+      />
+
+      <textarea
+        name="body"
+        rows="6"
+        required
+        class="w-full p-3 rounded bg-gray-900 border border-gray-700 text-white focus:outline-none"
+      ><%= blog.body %></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 py-3 rounded font-semibold transition"
+      >
+        Update Blog
+      </button>
+
+    </form>
+  </div>
+</body>
+</html>

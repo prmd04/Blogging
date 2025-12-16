@@ -1,0 +1,29 @@
+<nav class="bg-gray-800 text-white px-6 py-4 shadow-md">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Left side -->
+    <div class="flex items-center space-x-6">
+      <a href="/home" class="text-lg font-semibold hover:text-blue-400">
+        Home
+      </a>
+
+      <% if (isAuth) { %>
+        <a href="/myblog" class="text-lg hover:text-blue-400">My Blog</a>
+      <% } %>
+    </div>
+
+    <!-- Right side -->
+    <div>
+      <% if (isAuth) { %>
+        <a href="/logout" class="bg-red-600 px-4 py-2 rounded-lg hover:bg-red-700 transition">
+          Logout
+        </a>
+      <% } else { %>
+        <a href="/login" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          Login
+        </a>
+      <% } %>
+    </div>
+
+  </div>
+</nav>
